@@ -9,7 +9,7 @@ So far I have created an Animation Controller for one of the two characters I ha
 So come along with me on this journey of discovery and likely unknowingly breaking things.
 
 ## My Goals for this Project
-21.. Using Mixamo, create and animate two player characters
+1. Using Mixamo, create and animate two player characters
 1. Program 3 different weapons for player to use
 1. Create unique enemies for players to fight
 1. Refine and Refurbish above
