@@ -14,4 +14,4 @@ So come along with me on this journey of discovery and likely unknowingly breaki
 1. Create unique enemies for players to fight
 1. Refine and Refurbish above
 1. ???
-1. /sProfit/s
+1. Profit! I mean, share my work and guage feedback.
