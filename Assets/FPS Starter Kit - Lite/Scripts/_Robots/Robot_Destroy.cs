@@ -10,68 +10,56 @@ public class Robot_Destroy : MonoBehaviour
 	public int explosion_damage;
 	public int firedamage;
 	public int knifedamage;
-    public float Robot_health = 100;// robot health
-    public Transform ragdoll; // robot ragdoll
+	public float Robot_health = 100;
+	// robot health
+	public Transform ragdoll;
+	// robot ragdoll
 	public TextMesh robot_health;
-    int a = 0;
-    public float RespawnRate;
-    public float RespawnTimer;
+	int a = 0;
 
 
-    void Update()
-    {
+	void Update ()
+	{
 		robot_health.text = "" + Robot_health;
-			if (Robot_health <= 0)
-        {
-            Destroy(gameObject);// destroy robot
-            if (ragdoll)
-            {
-                Transform dead = Instantiate(ragdoll, transform.position, transform.rotation) as Transform;// create ragdoll
-                CopyTransformsRecurse(transform, dead);                                                    //
-            }
-            a = PlayerPrefs.GetInt("Score"); //
-            a++;                             // score calculation 
-            PlayerPrefs.SetInt("Score", a);  //
+		if (Robot_health <= 0) {
+			Destroy (gameObject);// destroy robot
+			if (ragdoll) {
+				Transform dead = Instantiate (ragdoll, transform.position, transform.rotation) as Transform;// create ragdoll
+				CopyTransformsRecurse (transform, dead);                                                    //
+			}
+			a = PlayerPrefs.GetInt ("Score"); //
+			a++;                             // score calculation 
+			PlayerPrefs.SetInt ("Score", a);  //
 
-            InvokeRepeating("RespawnEnemy", RespawnTimer, RespawnRate);
-        }
-    }
+		}
+	}
 
 
-    static void CopyTransformsRecurse(Transform src, Transform dst)// ragdoll position
-    {
-        dst.position = src.position;
-        dst.rotation = src.rotation;
+	static void CopyTransformsRecurse (Transform src, Transform dst)// ragdoll position
+	{
+		dst.position = src.position;
+		dst.rotation = src.rotation;
 
-        foreach (Transform child in dst)
-        {
-            var curSrc = src.Find(child.name);
-            if (curSrc)
-                CopyTransformsRecurse(curSrc, child);
-        }
-    }
-    void OnTriggerStay(Collider Col)
-    {
-        if (Col.tag == "Fire")
-        {// if robot in fire 
+		foreach (Transform child in dst) {
+			var curSrc = src.Find (child.name);
+			if (curSrc)
+				CopyTransformsRecurse (curSrc, child);
+		}
+	}
+
+	void OnTriggerStay (Collider Col)
+	{
+		if (Col.tag == "Fire") {// if robot in fire 
 			Robot_health -= firedamage;
-        }
-    }
-    void OnTriggerEnter(Collider Col2)
-    {
-        if (Col2.tag == "Knife")
-        { // if hit knife 
-			Robot_health -= knifedamage;
-        }
-    }
+		}
+	}
 
-    void RespawnEnemy()
-    {
-        if (Robot_health <= 0)
-        {
-            Instantiate(gameObject);
-            //Method is run
-        }
-    }
+	void OnTriggerEnter (Collider Col2)
+	{
+		if (Col2.tag == "Knife") { // if hit knife 
+			Robot_health -= knifedamage;
+		}
+	}
+
 }
 
